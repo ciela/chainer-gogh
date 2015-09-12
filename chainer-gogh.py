@@ -196,11 +196,11 @@ except:
     pass
 
 if args.gpu >= 0:
-	cuda.check_cuda_available()
-	cuda.get_device(args.gpu).use()
-   	xp = cuda.cupy
+    cuda.check_cuda_available()
+    cuda.get_device(args.gpu).use()
+    xp = cuda.cupy
 else:
-   	xp = np
+    xp = np
 
 
 chainer.Function.type_check_enable = False
@@ -208,7 +208,7 @@ print "load model... %s"%args.model
 func = caffe.CaffeFunction(args.model)
 model = func.fs
 if args.gpu>=0:
-	model.to_gpu()
+    model.to_gpu()
 
 W = args.width
 img_gogh,_,_ = image_resize(args.style_img, W)
