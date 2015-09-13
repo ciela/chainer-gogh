@@ -7,6 +7,7 @@ from bottle import route, run, template, request, response
 import os
 import uuid
 
+
 @route('/')
 def get_simple_form():
     """
@@ -40,7 +41,10 @@ def upload_imgs():
     input_img.save(input_up_path)
     style_img.save(style_up_path)
 
+    # TODO スレッドでchainer-gophのgenerate_imageをコールする
+
     return template('Uploaded images. ID is "{{id}}".', id=id.get_hex())
+
 
 def check_img_png(image):
     """
@@ -50,6 +54,7 @@ def check_img_png(image):
     """
     name, ext = os.path.split(image.filename)
     return ext not in ('png', 'jpeg', 'jpg')
+
 
 @route('/statuses/<id>')
 def show_status(id=''):
